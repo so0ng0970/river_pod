@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_pd/riverpod/provider_observer.dart';
 import 'package:river_pd/screen/home_screen.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
-      child: MyApp(),
+    ProviderScope(
+      observers: [
+        Logger(),
+      ],
+      child: const MyApp(),
     ),
   );
 }
