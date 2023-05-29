@@ -3,6 +3,7 @@ import 'package:river_pd/screen/auto_dispose_modifier.dart';
 import 'package:river_pd/screen/family_modifier_screen.dart';
 import 'package:river_pd/screen/future_provider_screen.dart';
 import 'package:river_pd/screen/listen_provider_screen.dart';
+import 'package:river_pd/screen/provider_screen.dart';
 import 'package:river_pd/screen/select_provider_screen.dart';
 import 'package:river_pd/screen/state_notifier_provider_screen.dart';
 import 'package:river_pd/screen/state_provider_screen.dart';
@@ -113,6 +114,18 @@ class HomeScreen extends StatelessWidget {
             },
             child: const Text(
               'SelectProviderScreen',
+            ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (_) => const ProviderScreen(),
+                ),
+              );
+            },
+            child: const Text(
+              'ProviderScreen',
             ),
           ),
         ],
