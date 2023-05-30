@@ -6,6 +6,22 @@ part of 'code_generation_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+String _$gStateNotifierHash() => r'f5d3562260bad49518ffe5b82e60b7cc1b8655f2';
+
+/// See also [GStateNotifier].
+@ProviderFor(GStateNotifier)
+final gStateNotifierProvider =
+    AutoDisposeNotifierProvider<GStateNotifier, int>.internal(
+  GStateNotifier.new,
+  name: r'gStateNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$gStateNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$GStateNotifier = AutoDisposeNotifier<int>;
 String _$gStateHash() => r'398ea8deda5c0c18c30dc6d924e826fb5730a0b4';
 
 /// See also [gState].

@@ -14,6 +14,7 @@ class CodeGenerationScreen extends ConsumerWidget {
     final state4 = ref.watch(
       gStateMultiplyProvider(number1: 5, number2: 4),
     );
+    final state5 = ref.watch(gStateNotifierProvider);
     return DefaultLayout(
       title: 'Code generation screen',
       body: Column(
@@ -53,7 +54,34 @@ class CodeGenerationScreen extends ConsumerWidget {
               child: CircularProgressIndicator(),
             ),
           ),
-          Text('state4 : $state4')
+          Text('state4 : $state4'),
+          Text('state5 : $state5'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  ref.read(gStateNotifierProvider.notifier).increment();
+                },
+                child: const Text('Increment'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  ref.watch(gStateNotifierProvider.notifier).decrement();
+                },
+                child: const Text('decrement'),
+              ),
+            ],
+          ),
+          // invalidate()
+          // 유효하지 않게 하다
+          // 초기값으로 돌아가게 됨
+          ElevatedButton(
+            onPressed: () {
+              ref.invalidate(gStateNotifierProvider);
+            },
+            child: const Text('invalidate'),
+          ),
         ],
       ),
     );
