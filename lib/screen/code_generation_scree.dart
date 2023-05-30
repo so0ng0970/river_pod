@@ -9,6 +9,8 @@ class CodeGenerationScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state1 = ref.watch(gStateProvider);
+    final state2 = ref.watch(gStateFutureProvider);
+    final state3 = ref.watch(gStateFuture2Provider);
     return DefaultLayout(
       title: 'Code generation screen',
       body: Column(
@@ -16,6 +18,38 @@ class CodeGenerationScreen extends ConsumerWidget {
           Text(
             'state1 : $state1',
           ),
+          state2.when(
+            data: (data) {
+              return Text(
+                'state2 : $data',
+                textAlign: TextAlign.center,
+              );
+            },
+            error: (err, stack) {
+              return Text(
+                err.toString(),
+              );
+            },
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          ),
+          state3.when(
+            data: (data) {
+              return Text(
+                'state3 : $data',
+                textAlign: TextAlign.center,
+              );
+            },
+            error: (err, stack) {
+              return Text(
+                err.toString(),
+              );
+            },
+            loading: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
+          )
         ],
       ),
     );
