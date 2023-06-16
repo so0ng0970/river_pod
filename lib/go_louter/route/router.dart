@@ -2,6 +2,8 @@ import 'package:go_router/go_router.dart';
 import 'package:river_pd/go_louter/screens/1_basic_screen.dart';
 import 'package:river_pd/go_louter/screens/2_named_screen.dart';
 import 'package:river_pd/go_louter/screens/3_push_screen.dart';
+import 'package:river_pd/go_louter/screens/4_pop_base_screen.dart';
+import 'package:river_pd/go_louter/screens/5_pop_return_screen.dart';
 import 'package:river_pd/go_louter/screens/root_screen.dart';
 
 final router = GoRouter(
@@ -31,6 +33,21 @@ final router = GoRouter(
           builder: (context, state) {
             return const PushScreen();
           },
+        ),
+        GoRoute(
+          path: 'pop',
+          name: 'pop_screen',
+          builder: (context, state) {
+            return const PopBaseScreen();
+          },
+          routes: [
+            GoRoute(
+              path: 'return',
+              builder: (context, state) {
+                return const PopReturnScreen();
+              },
+            )
+          ],
         ),
       ],
     ),
