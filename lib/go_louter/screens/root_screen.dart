@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:river_pd/go_louter/layout/default_layout.dart';
 
 class RootScreen extends StatelessWidget {
@@ -8,8 +9,15 @@ class RootScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultLayout(
       body: ListView(
-        children: const [
-          
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              context.go('/basic');
+            },
+            child: const Text(
+              'Go Basic',
+            ),
+          )
         ],
       ),
     );
