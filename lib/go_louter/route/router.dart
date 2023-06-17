@@ -5,9 +5,11 @@ import 'package:river_pd/go_louter/screens/3_push_screen.dart';
 import 'package:river_pd/go_louter/screens/4_pop_base_screen.dart';
 import 'package:river_pd/go_louter/screens/5_pop_return_screen.dart';
 import 'package:river_pd/go_louter/screens/7_query_parameter_screen.dart';
+import 'package:river_pd/go_louter/screens/8_nested_screen.dart';
 import 'package:river_pd/go_louter/screens/root_screen.dart';
 
 import '../screens/6_path_param_screen.dart';
+import '../screens/8_child_screen.dart';
 
 final router = GoRouter(
   routes: [
@@ -71,7 +73,35 @@ final router = GoRouter(
           builder: (context, state) {
             return const QueryParameterScreen();
           },
-        )
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return NestedScreen(
+              child: child,
+            );
+          },
+          // child 내용 
+          routes: [
+            GoRoute(
+              path: 'Nested/a',
+              builder: (_, state) => const NestedChildScreen(
+                routeName: '/nested/a',
+              ),
+            ),
+            GoRoute(
+              path: 'Nested/b',
+              builder: (_, state) => const NestedChildScreen(
+                routeName: '/nested/b',
+              ),
+            ),
+            GoRoute(
+              path: 'Nested/c',
+              builder: (_, state) => const NestedChildScreen(
+                routeName: '/nested/c',
+              ),
+            ),
+          ],
+        ),
       ],
     ),
   ],
