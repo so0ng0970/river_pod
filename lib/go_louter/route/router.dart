@@ -4,6 +4,7 @@ import 'package:river_pd/go_louter/screens/2_named_screen.dart';
 import 'package:river_pd/go_louter/screens/3_push_screen.dart';
 import 'package:river_pd/go_louter/screens/4_pop_base_screen.dart';
 import 'package:river_pd/go_louter/screens/5_pop_return_screen.dart';
+import 'package:river_pd/go_louter/screens/7_query_parameter_screen.dart';
 import 'package:river_pd/go_louter/screens/root_screen.dart';
 
 import '../screens/6_path_param_screen.dart';
@@ -64,6 +65,12 @@ final router = GoRouter(
               },
             )
           ],
+        ),
+        GoRoute(
+          path: 'query_param',
+          builder: (context, state) {
+            return const QueryParameterScreen();
+          },
         )
       ],
     ),
