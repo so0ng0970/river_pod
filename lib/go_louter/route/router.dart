@@ -6,12 +6,25 @@ import 'package:river_pd/go_louter/screens/4_pop_base_screen.dart';
 import 'package:river_pd/go_louter/screens/5_pop_return_screen.dart';
 import 'package:river_pd/go_louter/screens/7_query_parameter_screen.dart';
 import 'package:river_pd/go_louter/screens/8_nested_screen.dart';
+import 'package:river_pd/go_louter/screens/9_login_screen.dart';
+import 'package:river_pd/go_louter/screens/9_private_screen.dart';
 import 'package:river_pd/go_louter/screens/root_screen.dart';
 
 import '../screens/6_path_param_screen.dart';
 import '../screens/8_child_screen.dart';
 
+// 로그인이 된지 안됐는지
+bool authState = false;
+
 final router = GoRouter(
+  redirect: (context, state) {
+    // return string (path) -> 해당 패스로 이동한다
+    // return null -> 원래 이동하려던 라우트로 이동한다
+    if (state.location == '/login/private' && !authState) {
+      return '/login';
+    }
+    return null;
+  },
   routes: [
     GoRoute(
       path: '/',
@@ -80,7 +93,7 @@ final router = GoRouter(
               child: child,
             );
           },
-          // child 내용 
+          // child 내용
           routes: [
             GoRoute(
               path: 'Nested/a',
@@ -102,6 +115,32 @@ final router = GoRouter(
             ),
           ],
         ),
+        GoRoute(
+          path: 'login',
+          builder: (_, state) => const LoginScreen(),
+          routes: [
+            GoRoute(
+              path: 'private',
+              builder: (_, state) => const PrivateScreen(),
+            )
+          ],
+        ),
+        GoRoute(
+          path: 'login2',
+          builder: (_, state) => const LoginScreen(),
+          routes: [
+            GoRoute(
+              path: 'private',
+              builder: (_, state) => const PrivateScreen(),
+              redirect: (context, state) {
+                if (!authState) {
+                  return '/login2';
+                }
+                return null;
+              },
+            )
+          ],
+        )
       ],
     ),
   ],
