@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:river_pd/go_louter/screens/10_transition_screen1.dart';
 import 'package:river_pd/go_louter/screens/1_basic_screen.dart';
 import 'package:river_pd/go_louter/screens/2_named_screen.dart';
 import 'package:river_pd/go_louter/screens/3_push_screen.dart';
@@ -10,6 +12,7 @@ import 'package:river_pd/go_louter/screens/9_login_screen.dart';
 import 'package:river_pd/go_louter/screens/9_private_screen.dart';
 import 'package:river_pd/go_louter/screens/root_screen.dart';
 
+import '../screens/10_transition_screen2.dart';
 import '../screens/6_path_param_screen.dart';
 import '../screens/8_child_screen.dart';
 
@@ -138,6 +141,26 @@ final router = GoRouter(
                 }
                 return null;
               },
+            )
+          ],
+        ),
+        GoRoute(
+          path: 'transition',
+          builder: (_, state) => const TransitionScreen1(),
+          routes: [
+            GoRoute(
+              path: 'detail',
+              pageBuilder: (_, state) => CustomTransitionPage(
+                transitionDuration: const Duration(seconds: 3),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: const TransitionScreen2(),
+              ),
             )
           ],
         )
